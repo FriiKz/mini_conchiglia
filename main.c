@@ -6,7 +6,7 @@
 /*   By: lbusi <lbusi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/22 13:40:47 by aperez-b          #+#    #+#             */
-/*   Updated: 2023/05/01 15:19:48 by lbusi            ###   ########.fr       */
+/*   Updated: 2023/05/01 17:46:59 by lbusi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,7 @@ int	main(int argc, char **argv, char **envp)
 	prompt = init_prompt(argv, envp);
 	while (argv && argc)
 	{
-		signal(SIGINT, handle_sigint);
-		signal(SIGQUIT, SIG_IGN);
+		ft_sig_handling(SIG_INITIAL);
 		str = mini_getprompt(prompt);
 		if (str)
 			out = readline(str);

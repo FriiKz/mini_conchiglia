@@ -6,7 +6,7 @@
 /*   By: lbusi <lbusi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/22 15:08:50 by aperez-b          #+#    #+#             */
-/*   Updated: 2023/05/01 15:44:13 by lbusi            ###   ########.fr       */
+/*   Updated: 2023/05/01 17:44:49 by lbusi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,19 @@
 # include <sys/wait.h>
 # include <dirent.h>
 # include <sys/ioctl.h>
+# include <termios.h>
 
 # define READ_END 0
 # define WRITE_END 1
 # define DEFAULT "\001\033[0;39m\002"
 
 extern void	rl_replace_line(const char *text, int clear_undo);
+
+typedef enum e_sig_handling_opcode
+{
+	SIG_INITIAL,
+	SIG_AT_EXIT
+}	t_sig_handling_opcode;
 
 typedef struct s_prompt
 {
@@ -178,4 +185,6 @@ char	*ft_strdup(const char *s1);
 char	*ft_itoa(int n);
 char	**ft_dup_matrix(char **m);
 char	**ft_extend_matrix(char **in, char *newstr);
+void	sig_handler(int sig);
+void	ft_sig_handling(t_sig_handling_opcode opcode);
 #endif
